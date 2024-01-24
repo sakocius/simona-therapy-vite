@@ -2,10 +2,12 @@
 
 :root {
   --c-black-olive: hsla(93, 7%, 26%, 1);
+  --c-black-olive: hsla(93, 7%, 26%, 1);
   --c-linen: hsla(26, 100%, 94%, 1);
   --c-jade: hsla(135, 32%, 48%, 1);
   --c-hunter-green: hsla(132, 24%, 32%, 1);
   --c-champagne-pink: #e8d1bf;
+  --c-eerie-black: #201F1D;
 
   // font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-family: Cormorant, Georgia, 'Times New Roman', Times, serif;
@@ -30,6 +32,12 @@ canvas {
   z-index: 0;
   width: 100vw;
   height: 100vh;
+  background:
+    radial-gradient(circle at bottom, var(--c-linen), transparent 80%),
+    linear-gradient(to top, var(--c-hunter-green) 0%, transparent 70%),
+    linear-gradient(to bottom, transparent, rgba(var(--c-linen), 0.4) 70%),
+    var(--c-hunter-green);
+  animation: bg 30s infinite;
 }
 
 .back-image {
@@ -40,7 +48,7 @@ canvas {
   z-index: 0;
   width: 100vw;
   height: 100vh;
-  filter: grayscale(1) contrast(0.25) brightness(1);
+  filter: grayscale(1) contrast(0.2) ;
   mix-blend-mode: multiply;
   object-fit: cover;
   object-position: center;
@@ -51,6 +59,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: var(--c-jade);
 }
@@ -69,7 +78,7 @@ h1 {
   font-weight: 400;
   margin: 0;
 
-  & + p {
+  &+p {
     font-size: 2em;
   }
 }
@@ -83,26 +92,39 @@ button {
   letter-spacing: 1px;
   font-family: inherit;
   background-color: transparent;
-  border: 1px solid var(--c-linen);
-  color: var(--c-linen);
+  border: 1px solid var(--c-eerie-black);
+  color: var(--c-eerie-black);
   cursor: pointer;
   transition: all 0.25s;
   outline: none;
   font-weight: 600;
-  // text-shadow: 0 0 10px var(--c-black-olive);
-  box-shadow:  0 0 60px var(--c-black-olive);
 
 }
+
 button:hover {
   background: var(--c-linen);
+  border-color: var(--c-linen);
   color: var(--c-black-olive);
 }
+
 button:focus,
 button:focus-visible {
 
   color: var(--c-black-olive);
+  border-color: var(--c-linen);
   background: var(--c-linen);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {}
+
+@keyframes bg {
+
+  0%,
+  100% {
+    background-color: var(--c-jade);
+  }
+
+  50% {
+    background-color: var(--c-champagne-pink);
+  }
 }

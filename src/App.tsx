@@ -1,5 +1,5 @@
 import './App.scss';
-import './assets/colorSplash.js';
+// import './assets/colorSplash.js';
 
 function App() {
 	return (
