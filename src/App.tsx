@@ -1,11 +1,12 @@
 import './App.scss'
+import './assets/colorSplash.js';
 
 function App() {
 
   return (
     <>
       <h1>Simona Grigaraitė</h1>
-      <div className="card">
+      <div>
         <p>
          Individuali psichodinaminė psichoterapija.
         </p>
