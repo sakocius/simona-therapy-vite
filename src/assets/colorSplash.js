@@ -4,16 +4,16 @@ var c = document.getElementById('c');
 var ctx = c.getContext('2d');
 var cH;
 var cW;
-var bgColor = '#FF6138';
+var bgColor = '#e8d1bf';
 var animations = [];
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 var circles = [];
 
 var colorPicker = (function () {
-	var colors = ['#54A268', '#3D6445', '#E9D2C0', '#FFEDDF', '#41463D'];
+	var colors = [ '#FFEDDF', '#3D6445', '#e8d1bf'];
 	var index = 0;
 	function next() {
-		index = index++ < colors.length - 1 ? index : 0;
+		index = index++ < colors.length - 1 ? index : 0; 
 		return colors[index];
 	}
 	function current() {
@@ -50,7 +50,7 @@ function handleEvent(e) {
 	var nextColor = colorPicker.next();
 	var targetR = calcPageFillRadius(e.pageX, e.pageY);
 	var rippleSize = Math.min(200, cW * 0.4);
-	var minCoverDuration = 750;
+	var minCoverDuration = 3500;
 
 	var pageFill = new Circle({
 		x: e.pageX,
@@ -176,37 +176,4 @@ var resizeCanvas = function () {
 	}
 	window.addEventListener('resize', resizeCanvas);
 	addClickListeners();
-	if (window.location.pathname.match(/fullcpgrid/)) {
-		startFauxClicking();
-	}
-	handleInactiveUser();
 })();
-
-function handleInactiveUser() {
-	var inactive = setTimeout(function () {
-		fauxClick(cW / 2, cH / 2);
-	}, 2000);
-
-	function clearInactiveTimeout() {
-		clearTimeout(inactive);
-		document.removeEventListener('mousedown', clearInactiveTimeout);
-		document.removeEventListener('touchstart', clearInactiveTimeout);
-	}
-
-	document.addEventListener('mousedown', clearInactiveTimeout);
-	document.addEventListener('touchstart', clearInactiveTimeout);
-}
-
-function startFauxClicking() {
-	setTimeout(function () {
-		fauxClick(anime.random(cW * 0.2, cW * 0.8), anime.random(cH * 0.2, cH * 0.8));
-		startFauxClicking();
-	}, anime.random(200, 900));
-}
-
-function fauxClick(x, y) {
-	var fauxClick = new Event('mousedown');
-	fauxClick.pageX = x;
-	fauxClick.pageY = y;
-	document.dispatchEvent(fauxClick);
-}

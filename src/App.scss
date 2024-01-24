@@ -4,7 +4,12 @@
   padding: 2rem;
   text-align: center;
   z-index: 1;
-  mix-blend-mode: plus-lighter;
+  // mix-blend-mode: plus-lighter;
+
+  h1, p {
+    color: var(--c-linen);
+    text-shadow: 0 0 40px var(--c-black-olive);
+  }
 }
 
 
